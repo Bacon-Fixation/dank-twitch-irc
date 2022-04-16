@@ -78,9 +78,7 @@ export class ChatClient extends BaseClient {
 
   public async connect(): Promise<void> {
     this.requireConnection();
-    if (!this.ready) {
-      await new Promise<void>((resolve) => this.once("ready", () => resolve()));
-    }
+    return await new Promise((resolve) => this.on("ready", () => resolve()));
   }
 
   public close(): void {
